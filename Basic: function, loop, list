@@ -1,0 +1,92 @@
+# Cousera
+# 1. Functions, IF-ELSE
+def firstfunc(x, y, z=None, flag=False):
+    if (flag):
+        print('Flag is true!')
+    if (z==None):
+        return x * y
+    else:
+        return x + y + z
+    
+print(firstfunc(1, 2, flag=True))
+
+>Flag is true!
+>2
+
+# a function to a variable
+a=firstfunc            
+print(a(1, 2, flag=True))
+
+>Flag is true!
+>2
+
+# 2. Use type to return the object's type.
+type('This is a string')
+> str
+
+# 3. List and TUPLE
+# Tuple:cannot be altered
+x = (1, 'a', 2, 'b') 
+# List:can be altered
+x = [1, 'a', 2, 'b'] 
+
+# 4. LOOP: for and while
+# FOR: all elements
+for a in x:
+    print(a)
+#WHILE: condition applied
+i=0
+while (i <len(x)):
+  print(x[i])
+  i= i+1
+  
+
+# 5. List and element
+## 5.1 character
+x = 'This is a string'
+print(x[1]) #second character
+print(x[0:1]) #first character, stop before the second character.
+print(x[0:2]) #first two characters, stop before the 3rd character.
+>h
+>T
+>Th
+## 5.2 word----split('  ')
+firstname = 'Christopher,Arthur Hansen Brooks'.split(',')[1] # [0] selects the 2nd element of the list
+print(firstname)
+>Arthur Hansen Brooks
+
+
+# 6. CSV files
+import csv
+%precision 2
+with open('mpg.csv') as csvfile:
+    mpg = list(csv.DictReader(csvfile))    ###csv.DictReader reads the each row of our csv file as a dictionary.
+    
+mpg[:3] # The first three dictionaries (rows) in our list.
+len(mpg) #row number
+mpg[0].keys() # column names
+sum(float(rita['cty']) for rita in mpg) / len(mpg)  #find the average cty fuel economy across all cars(rows, marked as rita).
+
+# finding the average cty mpg for each cylinders
+CtyMpgByCyl = []
+
+for c in cylinders: # iterate over all the cylinder levels, 1) calculate sum and count for each level, 2) index the group number
+    summpg = 0
+    cyltypecount = 0
+    for d in mpg: # iterate over all dictionaries, within each level, go through all rows
+        if d['cyl'] == c: # if the cylinder level type matches,
+            summpg += float(d['cty']) # add the cty mpg
+            cyltypecount += 1 # increment the count
+    CtyMpgByCyl.append((c, summpg / cyltypecount)) # append the tuple ('cylinder', 'avg mpg')
+
+CtyMpgByCyl.sort(key=lambda x: x[0])
+CtyMpgByCyl
+
+
+#UNIQUE VALUE:SET
+vehicleclass = set(d['class'] for d in mpg) # what are the class types
+vehicleclass
+
+# FOR-IN-IF used in list
+my_list = [number for number in range(0,1000) if number % 2 == 0]
+my_list
